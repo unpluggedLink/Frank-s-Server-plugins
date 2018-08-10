@@ -1,0 +1,8 @@
+main: primero.PrimerPlugin
+name: PrimerPlugin
+version: 1.0
+author: Romplestinskin
+description: -no desc-
+commands:
+  hello:
+    description: Displays Hello World to you as a message.
