@@ -16,38 +16,45 @@ public class Currency implements Listener{
 		Material itemType = player.getInventory().getItemInMainHand().getType();
 		
 		if (isCurrency(itemType)) {
-		
-			int coins = howMuch(player, Material.GOLD_NUGGET);
-			player.sendMessage("You have " + coins + " pieces of gold");
+			
+			float nuggGoldValue = 1;
+			float ingotGoldValue = 10;
+			
+			float nuggIronValue = (float) 0.1;
+			float ingotIronValue = 1;
+			
+			int nuggetCoinsGold = howMuch(player, Material.GOLD_NUGGET);
+			int nuggetCoinsIron = howMuch(player, Material.IRON_NUGGET);
+			int ingotsGold = howMuch(player, Material.GOLD_INGOT);
+			int ingotsIron = howMuch(player, Material.IRON_INGOT);
+			
+			float money = (nuggetCoinsGold * nuggGoldValue) + (nuggetCoinsIron * nuggIronValue) + (ingotsGold * ingotGoldValue) + (ingotsIron * ingotIronValue);
+			
+			player.sendMessage("You have " + money + " Inngals");
 		}
 			
 		
 	}
 	
-	//With this function you can check how much material a player currently has
+	//With this function you can check how much material a player currently has but it most have some currency on his hands first
 	public int howMuch(Player player, Material material) {
-		
-		ItemStack actualItem = player.getInventory().getItemInMainHand();
+
 		int coins = 0;
 		
-		//check the inventory of the player for how much material he's carrying if he has a old ingot in his hand
-		if(actualItem.getType().equals(material)) {
-			
-			//here we iterate over every slot of the player inventory
-			for(int i = 0; i <= player.getInventory().getContents().length; i++) {
+		//here we iterate over every slot of the player inventory
+		for(int i = 0; i <= player.getInventory().getContents().length; i++) {
 				
-				if (player.getInventory().getItem(i) != null) {
+			if (player.getInventory().getItem(i) != null) {
 					
-					//We detect if the current inventory slot has gold ingot and if true the amount of the stack 
-					if (player.getInventory().getItem(i).getType().equals(material)){
+				//We detect if the current inventory slot has gold ingot and if true the amount of the stack 
+				if (player.getInventory().getItem(i).getType().equals(material)){
 						
-						//we add 1 coin for every ingot
-						coins = coins + player.getInventory().getItem(i).getAmount();
-					}
+					//we add 1 coin for every ingot
+					coins = coins + player.getInventory().getItem(i).getAmount();
 				}
 			}
 		}
-		return coins;
+			return coins;
 	}
 	
 	public boolean isCurrency(Material material){
