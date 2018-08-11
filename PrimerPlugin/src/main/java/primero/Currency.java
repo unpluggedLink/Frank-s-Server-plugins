@@ -18,10 +18,9 @@ public class Currency implements Listener{
 		if (isCurrency(itemType)) {
 			
 			float nuggGoldValue = 1;
-			float ingotGoldValue = 10;
-			
+			float ingotGoldValue = 9;
 			float nuggIronValue = (float) 0.1;
-			float ingotIronValue = 1;
+			float ingotIronValue = (float) 0.9;
 			
 			int nuggetCoinsGold = howMuch(player, Material.GOLD_NUGGET);
 			int nuggetCoinsIron = howMuch(player, Material.IRON_NUGGET);
