@@ -29,7 +29,7 @@ public class Currency implements Listener{
 			
 			float money = (nuggetCoinsGold * nuggGoldValue) + (nuggetCoinsIron * nuggIronValue) + (ingotsGold * ingotGoldValue) + (ingotsIron * ingotIronValue);
 			
-			player.sendMessage("You have " + money + " Inngals");
+			player.sendMessage("You have " + money + " coinns");
 		}
 			
 		

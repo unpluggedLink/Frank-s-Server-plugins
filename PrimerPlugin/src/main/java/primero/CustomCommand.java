@@ -11,19 +11,48 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 
 public class CustomCommand implements CommandExecutor, Listener{
 
+	boolean selectingItem = false;
 	public String cmd1 = "market";
 	CustomInventory market = new CustomInventory();
 	
 	@EventHandler
 	public void onPlayerDragsInventory(InventoryDragEvent event) {
-		if(event.getView().getTopInventory().getName().equals("Gamerz inn")){
+
+		if(event.getView().getTopInventory().getName().equals("Market Menu")){
 			event.setCancelled(true);
         }
 	}
 	
 	@EventHandler
 	public void onPlayerClicksInventory(InventoryClickEvent event) {
-		if(event.getView().getTopInventory().getName().equals("Gamerz inn")){
+
+		String clickedItemName = event.getCurrentItem().getItemMeta().getDisplayName();
+		Player activePlayer = (Player) event.getWhoClicked();
+		String inventoryClicked = event.getInventory().getName();
+		
+		if (selectingItem == true && event.getCurrentItem() != null && clickedItemName != "SEND ITEM") {
+			activePlayer.sendMessage( event.getCurrentItem().getType().toString() );
+			selectingItem = false;
+			
+		}
+		
+		if( clickedItemName == "SEND ITEM" && selectingItem == false ){
+			
+			selectingItem = true;
+			event.setCancelled(true);
+
+		}else if( clickedItemName == "EXPLORE MARKET" && selectingItem == false) {
+
+			event.setCancelled(true);
+
+		}else if( clickedItemName == "MY ITEMS" && selectingItem == false) {
+
+			event.setCancelled(true);
+
+		}
+		
+		if( event.getView().getTopInventory().getName().equals("Market Menu") ){
+
 			event.setCancelled(true);
         }
 
