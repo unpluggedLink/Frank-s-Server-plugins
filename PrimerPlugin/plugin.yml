@@ -6,3 +6,5 @@ description: -no desc-
 commands:
   market:
     description: Displays the gamerz market.
+  price:
+    description: put a price on item, /price price item id
